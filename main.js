@@ -50,7 +50,7 @@ tratamientos.push(new Tratamiento(2, "Extracción", 200));
 
 var miFormulario = document.getElementById("miFormulario");
 var nombreIngresado = miFormulario.children[0].value;
-var edadIngresado = miFormulario.children[1].value;
+var edadIngresado = miFormulario.children[1];
 miFormulario.addEventListener("submit", agregarPaciente);
 let contenedorTratamientos = document.getElementById("tratamientos");
 
