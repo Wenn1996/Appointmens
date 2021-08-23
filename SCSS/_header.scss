@@ -1,0 +1,50 @@
+header {
+    position: sticky;
+    top: 0;
+    nav {
+        .lista {
+            list-style-type: none;
+            background-color: white;
+            .lista__elemento {
+                display: inline-block;
+                position: relative;
+                .lista__link {
+                    display: block;
+                    color: gray;
+                    text-align: center;
+                    padding: 17px 16px;
+                    text-transform: uppercase;
+                    font-family: 'Noto Sans JP', sans-serif;
+                }
+            }
+        }
+    }
+}
+
+.subLista {
+    display: none;
+    position: absolute;
+}
+
+.subLista li {
+    display: block;
+    color: gray;
+    text-align: center;
+    padding: 0 20px;
+    text-transform: uppercase;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: white;
+}
+
+#logo {
+    height: 20px;
+    width: 20px;
+}
+
+.lista__elemento a:hover {
+    background-color: #111;
+}
+
+.subMenu:hover>.subLista {
+    display: block;
+}

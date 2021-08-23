@@ -1,0 +1,344 @@
+@charset "UTF-8";
+header {
+  position: sticky;
+  top: 0; }
+  header nav .lista {
+    list-style-type: none;
+    background-color: white; }
+    header nav .lista .lista__elemento {
+      display: inline-block;
+      position: relative; }
+      header nav .lista .lista__elemento .lista__link {
+        display: block;
+        color: gray;
+        text-align: center;
+        padding: 17px 16px;
+        text-transform: uppercase;
+        font-family: 'Noto Sans JP', sans-serif; }
+
+.subLista {
+  display: none;
+  position: absolute; }
+
+.subLista li {
+  display: block;
+  color: gray;
+  text-align: center;
+  padding: 0 20px;
+  text-transform: uppercase;
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: white; }
+
+#logo {
+  height: 20px;
+  width: 20px; }
+
+.lista__elemento a:hover {
+  background-color: #111; }
+
+.subMenu:hover > .subLista {
+  display: block; }
+
+/*Variables*/
+h2 {
+  font-size: 18px; }
+
+h3 {
+  font-size: 19px; }
+
+h4 {
+  font-size: 20px; }
+
+h5 {
+  font-size: 21px; }
+
+.bannerPrincipal {
+  height: 95vh;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  overflow: hidden; }
+
+.titulo {
+  padding-top: 300px;
+  padding-left: 50px;
+  background-color: white;
+  width: 100vh;
+  height: 100vh; }
+
+.tituloPrincipal {
+  color: black;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  animation: bounce;
+  animation-duration: 2s; }
+
+.bannerPrincipal img {
+  height: 100vh;
+  width: 130vh; }
+
+.bannerPrincipal p,
+#cuartoBanner p {
+  font-weight: bold;
+  padding-right: 20px;
+  color: black;
+  text-align: left; }
+
+.tarjeta {
+  margin: 20px 200px; }
+
+.tarjeta__div {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  text-align: center;
+  background-color: #8ED0E6;
+  color: white;
+  padding: 50px;
+  height: 70%;
+  width: 90hv; }
+
+.tarjeta__div:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+
+.tarjeta__pasos {
+  text-align: justify; }
+
+/*boton Primario*/
+.boton {
+  background-color: #8ED0E6;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  padding: 15px 32px;
+  display: block;
+  margin-top: 15px; }
+
+.boton:hover {
+  background-color: #7EB9CC; }
+
+.subtituloPrincipal {
+  font-size: 18px;
+  color: black;
+  line-height: 1.6;
+  font-size: 25px;
+  padding-top: 80px;
+  padding-left: 50px;
+  text-align: center;
+  animation: heartBeat;
+  animation-duration: 5s; }
+
+.tituloSecundario {
+  font-size: 38px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+  animation-duration: 2s;
+  animation-name: backInDown; }
+
+/*Seccion 5- unete*/
+.unete {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  height: 95vh;
+  margin-top: 50px; }
+
+#quintoBanner {
+  width: 50%;
+  background-image: url("../images/dentist-1639683_1920.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; }
+
+.formulario {
+  padding-top: 10%;
+  padding-bottom: 10%;
+  background-color: white;
+  width: 50%;
+  color: black;
+  text-align: center;
+  align-content: center; }
+
+.formulario__form {
+  height: 50%; }
+
+.formulario__parrafo {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.formulario__input {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 1px solid #7a7a7a;
+  display: inline-block;
+  align-content: center;
+  width: 50%;
+  font-family: 'Noto Sans JP', sans-serif; }
+
+.formulario__input:hover {
+  border-color: black; }
+
+.formulario__boton {
+  margin-left: 279px; }
+
+/*transformaciones*/
+.translate:hover {
+  transform: translate(10px, 20px); }
+
+.agrandar:hover {
+  transform: scale(2, 2); }
+
+/*animación*/
+@keyframes aparecer {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+.gradiente {
+  text-align: center;
+  background-color: #7EB9CC;
+  color: white; }
+
+.gradiente__link {
+  color: white; }
+
+main {
+  font-family: 'Noto Sans JP', sans-serif; }
+
+main p p {
+  line-height: 1.6; }
+
+/*Pagina Inicio*/
+#galery {
+  display: grid;
+  grid-template-areas: "imagen1 imagen4 imagen2 imagen3" "desc1 desc4 descripcion2 descripcion3";
+  grid-template-columns: 20% 20% 20% 20%;
+  grid-template-rows: 65% 50%;
+  height: 50vh;
+  grid-column-gap: 10px;
+  justify-content: center; }
+
+#galery #picture1 {
+  grid-area: imagen1;
+  background-image: url("../images/tipos-odontologos.jpg");
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+#galery #picture4 {
+  grid-area: imagen4;
+  background-image: url("../images/doctor_mike_gq_5080.jpg");
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+#galery #picture2 {
+  grid-area: imagen2;
+  background-image: url("../images/doctor_mike_gq_5080.jpg");
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+#galery #picture3 {
+  grid-area: imagen3;
+  background-image: url("../images/istockphoto-1189304032-612x612.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-around; }
+
+#galery #desc1 {
+  grid-area: desc1;
+  background-color: white;
+  padding: 20px; }
+
+#galery #desc4 {
+  grid-area: desc4;
+  background-color: white;
+  padding: 20px; }
+
+#galery #desc2 {
+  grid-area: descripcion2;
+  background-color: white;
+  padding: 20px; }
+
+#galery #desc3 {
+  grid-area: descripcion3;
+  background-color: white;
+  padding: 20px; }
+
+#galery p {
+  margin-top: 10px;
+  text-align: justify;
+  color: black; }
+
+.subtituloSecundario {
+  color: black;
+  font-size: 27px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 20px;
+  animation: swing;
+  animation-duration: 4s; }
+
+/*mobile first*/
+@media (min-width: 769px) and (max-width: 1024px) {
+  #unete {
+    grid-template-rows: 9% 80% 9%; }
+  #bannerPrincipal {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+  .titulo {
+    padding-top: 250px;
+    background-color: white;
+    width: 95vh;
+    height: 100vh; } }
+
+@media (min-width: 481px) and (max-width: 768px) {
+  nav li {
+    display: block;
+    position: relative; }
+  nav li a {
+    text-align: center;
+    padding: 17px 16px; }
+  #bannerPrincipal {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center; }
+  .titulo {
+    padding: 50px;
+    background-color: white;
+    width: 80vh;
+    height: 100vh; }
+  .i img {
+    height: 60vh;
+    width: 100vh; }
+  #unete {
+    grid-template-rows: 40% 50% 9%; }
+  .cardNosotros {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; }
+  .subLista {
+    display: none;
+    position: relative; }
+  .padre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center; } }
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none; }

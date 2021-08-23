@@ -1,0 +1,83 @@
+/*Pagina Inicio*/
+
+#galery {
+    display: grid;
+    grid-template-areas: "imagen1 imagen4 imagen2 imagen3" "desc1 desc4 descripcion2 descripcion3";
+    grid-template-columns: 20% 20% 20% 20%;
+    grid-template-rows: 65% 50%;
+    height: 50vh;
+    grid-column-gap: 10px;
+    justify-content: center;
+}
+
+#galery #picture1 {
+    grid-area: imagen1;
+    background-image: url("../images/tipos-odontologos.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#galery #picture4 {
+    grid-area: imagen4;
+    background-image: url("../images/doctor_mike_gq_5080.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#galery #picture2 {
+    grid-area: imagen2;
+    background-image: url("../images/doctor_mike_gq_5080.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#galery #picture3 {
+    grid-area: imagen3;
+    background-image: url("../images/istockphoto-1189304032-612x612.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-around;
+}
+
+#galery #desc1 {
+    grid-area: desc1;
+    background-color: white;
+    padding: 20px;
+}
+
+#galery #desc4 {
+    grid-area: desc4;
+    background-color: white;
+    padding: 20px;
+}
+
+#galery #desc2 {
+    grid-area: descripcion2;
+    background-color: white;
+    padding: 20px;
+}
+
+#galery #desc3 {
+    grid-area: descripcion3;
+    background-color: white;
+    padding: 20px;
+}
+
+#galery p {
+    margin-top: 10px;
+    text-align: justify;
+    color: black;
+}
+
+.subtituloSecundario {
+    color: black;
+    font-size: 27px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    animation: swing;
+    animation-duration: 4s;
+}

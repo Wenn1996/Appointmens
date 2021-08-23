@@ -1,0 +1,65 @@
+/*mobile first*/
+
+@media (min-width:769px) and (max-width: 1024px) {
+    #unete {
+        grid-template-rows: 9% 80% 9%;
+    }
+    #bannerPrincipal {
+        height: 95vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .titulo {
+        padding-top: 250px;
+        background-color: white;
+        width: 95vh;
+        height: 100vh;
+    }
+}
+
+@media (min-width:481px) and (max-width: 768px) {
+    nav li {
+        display: block;
+        position: relative;
+    }
+    nav li a {
+        text-align: center;
+        padding: 17px 16px;
+    }
+    #bannerPrincipal {
+        height: 95vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+    .titulo {
+        padding: 50px;
+        background-color: white;
+        width: 80vh;
+        height: 100vh;
+    }
+    .i img {
+        height: 60vh;
+        width: 100vh;
+    }
+    #unete {
+        grid-template-rows: 40% 50% 9%;
+    }
+    .cardNosotros {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .subLista {
+        display: none;
+        position: relative;
+    }
+    .padre {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+}

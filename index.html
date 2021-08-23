@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+
+    <!--font family-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
+
+    <!--Animaciones-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+
+<body>
+
+
+
+    <header>
+        <nav>
+            <ul class="lista">
+                <li class="lista__elemento">
+                    <a class="lista__link" href="index.html"> <img src="./images/diente.png" id="logo" /> </a>
+                </li>
+                <li class="lista__elemento"><a class="lista__link" href="index.html">Inicio</a></li>
+                <li class="lista__elemento"><a class="lista__link" href="#nosotros">Nosotros</a></li>
+                <li class="lista__elemento subMenu"><a class="lista__link" href="#doctores">Doctores</a>
+                </li>
+                <li class="lista__elemento"><a class="lista__link" href="#quintoBanner">Citas</a></li>
+
+                <li class="lista__elemento"><a class="lista__link" href="#registrate">Registrate</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="bannerPrincipal">
+            <div class="titulo">
+                <h1 class="tituloPrincipal">Get Your Dentist</h1>
+                <p> Encuentra los mejores dentistas de Lima </p>
+
+                <input type="button" value="Descubre" class="titulo__boton boton">
+            </div>
+            <img src="./images/di-sonrisa.jpg" alt=" ">
+        </section>
+
+        <section class="tarjeta" id="nosotros">
+            <div class="tarjeta__div">
+                <h4><b>Nosotros</b></h4>
+                <ol class="tarjeta__pasos">
+                    <p>Somos una empresa que te ayuda a encontrar los mejores dentistas y consultorios dentales en Lima, puedes realizar tus reservas y el pago de tus citas.</p>
+                </ol>
+            </div>
+        </section>
+
+
+        <section>
+            <h2 class="subtituloPrincipal" id="doctores">Doctores Recomendados</h2>
+            <section id="galery">
+                <div id="picture1"></div>
+                <div id="picture4"></div>
+                <div id="picture2"></div>
+                <div id="picture3"></div>
+                <div id="desc1">
+                    <h3>Dra. Daniela Lopez</h3>
+                    <p>Experto en Ortodoncia</p>
+
+                </div>
+                <div id="desc4">
+                    <h3>Dra. Lucia Espinoza</h3>
+                    <p>Experto en Endodoncia </p>
+                </div>
+                <div id="desc2">
+                    <h3>Dr. Rodrigo Sanchez</h3>
+                    <p>Experto en Ortodoncia</p>
+
+                </div>
+                <div id="desc3">
+                    <h3>Dra. Lucia Espinoza</h3>
+                    <p>Experto en Endodoncia </p>
+                </div>
+            </section>
+        </section>
+    </main>
+
+
+
+
+    <section class="unete" id="registrate">
+        <div id="quintoBanner">
+        </div>
+        <div class="formulario">
+            <h1 class="tituloSecundario">Registrate</h1>
+            <p class="formulario__parrafo"> Completa el formulario para Registrarte</p>
+
+            <form action="#" method="GET" class="formulario__form" id="miFormulario">
+
+                <input type="text" name="nombre_contacto" required placeholder="Nombre" id="nombre">
+                <input type="number" name="numero_contacto" required placeholder="Edad" id="edad">
+
+                <!--boton-->
+                <input type="submit" class="formulario__boton boton">
+                <div id="tratamientos">
+
+                </div>
+            </form>
+
+
+        </div>
+    </section>
+    <footer class="gradiente">
+        <br>
+        <ul class="gradiente__lista">
+            <a class="gradiente__link" href="index.html ">Inicio</a>
+            <a class="gradiente__link" href="#nosotros ">Nosotros</a>
+            <a class="gradiente__link" href="#doctores">Doctores</a>
+            <a class="gradiente__link" href="">Citas</a>
+            <a class="gradiente__link" href="#registrate ">Registrate</a>
+        </ul>
+        <p class="gradiente__texto">GetYourDentists@2021</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
