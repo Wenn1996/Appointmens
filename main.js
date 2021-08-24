@@ -50,20 +50,20 @@ tratamientos.push(new Tratamiento(2, "Extracción", 200));
 
 var miFormulario = document.getElementById("miFormulario");
 var nombreIngresado = miFormulario.children[0].value;
-var edadIngresado = miFormulario.children[1];
+var edadIngresado = miFormulario.children[1].value;
 miFormulario.addEventListener("submit", agregarPaciente);
-let contenedorTratamientos = document.getElementById("tratamientos");
+var contenedorTratamientos = document.getElementById("tratamientos");
 
-let pacientes = [];
+var pacientes = [];
 
-function agregarPaciente() {
-
+function agregarPaciente(e) {
+    e.preventDefault();
+    var form = e.target;
     pacientes.push(new Paciente(nombreIngresado, edadIngresado));
-    console.log(pacientes[0]);
+    console.log(pacientes);
     //miFormulario.children[0].value = "";
     //miFormulario.children[1].value = "";
     mostrarTratamientos();
-
 }
 
 console.log(pacientes);
