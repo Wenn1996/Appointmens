@@ -1,5 +1,6 @@
 const IGVPERU = 0.18;
 
+//El proceso comienza cuando se va a la sección Saca tu cita
 
 var total;
 var reservar;
@@ -57,6 +58,7 @@ tratamientos.push(new Tratamiento(2, "Extracción", 200));
 var miFormulario = document.getElementById("miFormulario");
 miFormulario.addEventListener("submit", agregarPaciente);
 var contenedorTratamientos = document.getElementById("tratamientos");
+var contenerdorFormCita = document.getElementById("citasform");
 var contenedorResumen = document.getElementById("resumen");
 
 var pacientes = [];
@@ -73,8 +75,8 @@ function mostrarTratamientos() {
         contenedorTratamientos.innerHTML += `<p> ${tratamiento.id}</p>
         <p><strong>Tratamiento:</strong> ${tratamiento.nombreTratamiento}</p><hr>`;
     }
-    contenedorTratamientos.innerHTML += `<form action="#" method="GET" id="form2"> <input type="number" name="idTratamiento" required placeholder="idTratamiento" id="idTratamiento"> <hr> 
-    <input type="number" name="dia" required placeholder="día" id="dia"> <hr> <input type="text" name="mes" required placeholder="Mes" id="mes"> <hr>
+    contenerdorFormCita.innerHTML = `<form action="#" method="GET" id="form2"> <label> Ingrese el id del tratamiento: </label> <input type="number" name="idTratamiento" required placeholder="idTratamiento" id="idTratamiento"> <br>
+    <label> Ingrese día: </label> <input type="number" name="dia" required placeholder="día" id="dia"> <br> <label> Ingrese mes ("Febrero"): </label> <input type="text" name="mes" required placeholder="Mes" id="mes"> <hr>
     <input type="submit" class="formulario__boton boton" value="Reservar cita" id="cita"> </form>`;
     var formCita = document.getElementById("form2");
     console.log(formCita.innerHTML);
@@ -154,6 +156,8 @@ function registrarCita(e) {
     citas.push(new Cita(diaIngresado, mesIngresado));
     console.log(citas[0]);
     //mostrarResumen(idTratamiento);
+    citas[0].mostrarCita();
+
 
 }
 
@@ -162,35 +166,9 @@ function mostrarResumen(idtratamiento) {
     //var costo = encontrado.calcularCosto();
 
     //alert("El tratamiento que escogiste fue " + encontrado.nombreTratamiento);
-
+    //falta ponerle precio
     contenedorResumen.innerHTML = `<h3> Detalles de Cita</h3>
     <p><strong> Tratamiento : </strong> ${encontrado.nombreTratamiento}</p>`;
 
 
 }
-
-//Elección de tratamiento
-/*
-    
-
-    mostrarTratamiento(tratamientoIngresado);
-    cita1.mostrarCita();
-*/
-//}
-
-
-
-//Función que verifica si se desea registrar una cita o no
-/*
-function verificar() {
-    if (reservar == "s") {
-        registrar();
-    } else {
-        alert("Vuelve pronto!!");
-    }
-}*/
-
-
-//Llamando a las funciones 
-//saludar();
-//verificar();
