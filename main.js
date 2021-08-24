@@ -1,10 +1,15 @@
 const IGVPERU = 0.18;
 
 
-let total;
-let reservar;
-let paciente1;
-let cita1;
+var total;
+var reservar;
+var paciente1;
+var cita1;
+var datosValidos;
+var nombreIngresado;
+var edadIngresado;
+var nombreTratamiento;
+var diaIngresado;
 
 // clases 
 class Paciente {
@@ -15,9 +20,10 @@ class Paciente {
 }
 
 class Cita {
-    constructor(dia, mes) {
-        this.dia = dia;
-        this.mes = mes;
+    constructor(fecha) {
+        //this.dia = dia;
+        //this.mes = mes;
+        this.fecha = fecha;
 
     }
     mostrarCita() {
@@ -49,39 +55,28 @@ tratamientos.push(new Tratamiento(1, "Endodoncia", 60));
 tratamientos.push(new Tratamiento(2, "Extracción", 200));
 
 var miFormulario = document.getElementById("miFormulario");
-var nombreIngresado = miFormulario.children[0].value;
-var edadIngresado = miFormulario.children[1].value;
 miFormulario.addEventListener("submit", agregarPaciente);
 var contenedorTratamientos = document.getElementById("tratamientos");
 
 var pacientes = [];
-
-function agregarPaciente(e) {
-    e.preventDefault();
-    var form = e.target;
-    pacientes.push(new Paciente(nombreIngresado, edadIngresado));
-    console.log(pacientes);
-    //miFormulario.children[0].value = "";
-    //miFormulario.children[1].value = "";
-    mostrarTratamientos();
-}
-
-console.log(pacientes);
+var citas = [];
 
 
 
 
 //Mostrar lista de tratamientos
 function mostrarTratamientos() {
-    contenedorTratamientos.innerHTML = '<h3> A continuación se presentará la lista de Tratamientos:</h3>';
+    contenedorTratamientos.innerHTML = '<h3> 2. Escoge el tratamiento </h3> <br> <p>A continuación se presentará la lista de Tratamientos:</p>';
     //alert(" A continuación se presentará la lista de Tratamientos");
     for (tratamiento of tratamientos) {
-        contenedorTratamientos.innerHTML += `<p><strong>Id: </strong> ${tratamiento.id}</p>
-        <p><strong>Tratamiento:</strong> ${tratamiento.nombreTratamiento}</p><hr>`
-            //alert("Tratamiento: " + tratamiento.nombreTratamiento + " - Codigo: " + tratamiento.id);
+        contenedorTratamientos.innerHTML += `<p> ${tratamiento.id}</p>
+        <p><strong>Tratamiento:</strong> ${tratamiento.nombreTratamiento}</p><hr>`;
     }
-
-
+    contenedorTratamientos.innerHTML += ` <form action="#" method="GET" id="form2"> <input type="text" name="trata" required placeholder="Tratamiento" id="nombreTratamiento">`;
+    contenedorTratamientos.innerHTML += `<label for="start">Start date:</label>
+    <input type="date" id="start" name="trip-start"
+           value="2021-08-24"
+           min="2021-08-24" max="2021-12-31" id="fecha"> <br> <input type="submit" class="formulario__boton boton" value="Reservar cita" id="cita"> </form>`;
 }
 
 
@@ -93,84 +88,80 @@ function saludar() {
 
 }
 
+//Función para validar Paciente
+function validarForm1() {
+    nombreIngresado = miFormulario.children[0].value;
+    edadIngresado = miFormulario.children[1].value;
+    if (nombreIngresado == "" || edadIngresado == "") {
+        alert("Debe completar todos los campos");
+        datosValidos = false;
+    } else {
+        datosValidos = true;
+    }
+
+
+}
+
+function validarCita() {
+    nombreTratamiento = document.getElementById("nombreTratamiento").value;
+    diaTratamiento = document.getElementById("").value;
+
+    while (nombreTratamiento == "") {
+        alert("Ingrese el número de tratamiento");
+        if (nombreTratamiento != "") {
+            break;
+        }
+    }
+
+
+}
+
+
+//Función para registrar Paciente
+function agregarPaciente(e) {
+    e.preventDefault();
+    validarForm1();
+    if (datosValidos) {
+        var form = e.target;
+        nombreIngresado = miFormulario.children[0].value;
+        edadIngresado = miFormulario.children[1].value;
+        pacientes.push(new Paciente(nombreIngresado, edadIngresado));
+        console.log(pacientes);
+        miFormulario.children[0].value = "";
+        miFormulario.children[1].value = "";
+        mostrarTratamientos();
+    } else {
+        alert("No se puedo agregar paciente");
+    }
+    miFormulario.children[0].value = "";
+    miFormulario.children[1].value = "";
+}
+
+
+
+console.log(pacientes);
+
+
+function registrarCita(e) {
+    e.preventDefault();
+    var form = e.target;
+    nombreTratamiento = document.getElementById("nombreTratamiento").value;
+    console.log(nombreTratamiento);
+    fechaIngresado = document.getElementById("fecha").value;
+    citas.push(new Cita(fechaIngresado));
+    console.log(citas[0]);
+
+}
 
 function mostrarTratamiento(idtratamiento) {
     const encontrado = tratamientos.find(elemento => elemento.id === idtratamiento);
     alert("El tratamiento que escogiste fue " + encontrado.nombreTratamiento);
     encontrado.calcularCosto();
-
 }
-
-
-
-
-
-
-//console.log(nombreIngresado.innerHTML);
-//Función que registra al paciente y la cita
-//function registrar() {
-
-
-//Registro de Paciente
-
-
-/*
-while (nombreIngresado == "") {
-    alert("No ingresaste tu nombre :(");
-    nombreIngresado = prompt("Ingrese su Nombre:");
-    if (nombreIngresado != "") {
-        break;
-    }
-}*/
-
-
-/*
-while (isNaN(edadIngresado)) {
-    alert("No ingresaste tu edad :(");
-    edadIngresado = parseInt(prompt("Ingrese su edad:"));
-    if (isNaN(edadIngresado) == false) {
-        break;
-    }
-}*/
-
-
-
 
 //Elección de tratamiento
 /*
-    listaTratamientos();
-    tratamientoIngresado = parseInt(prompt("Ingresa el codigo del tratamiento:  "));
-    while (isNaN(tratamientoIngresado)) {
-        alert("No ingresaste el tipo de tratamiento :(");
-        diaIngresado = parseInt(prompt("Ingrese el tipo de tratamiento:"));
-        if (isNaN(tratamientoIngresado) == false) {
-            break;
-        }
-    }
-
-    //Registro de cita
-
-    let diaIngresado = parseInt(prompt("Ingrese el día de la cita: (Ejemplo:31)"));
-    while (isNaN(diaIngresado)) {
-        alert("No ingresaste el día de la cita :(");
-        diaIngresado = parseInt(prompt("Ingrese el día:  (Ejemplo:31)"));
-        if (isNaN(diaIngresado) == false) {
-            break;
-        }
-    }
-
-    let mesIngresado = prompt("Ingrese el mes:  (Ejemplo: enero)");
-
-    while (mesIngresado == "") {
-        alert("No ingresaste el mes para la cita:(");
-        mesIngresado = prompt("Ingrese el mes: (Ejemplo: enero)");
-        if (mesIngresado != "") {
-            break;
-        }
-    }
-
-    cita1 = new Cita(diaIngresado, mesIngresado);
-    console.log(cita1);
+    
 
     mostrarTratamiento(tratamientoIngresado);
     cita1.mostrarCita();
