@@ -8,8 +8,9 @@ var cita1;
 var datosValidos;
 var nombreIngresado;
 var edadIngresado;
-var nombreTratamiento;
+var idTratamiento;
 var diaIngresado;
+var mesIngresado;
 
 // clases 
 class Paciente {
@@ -20,10 +21,9 @@ class Paciente {
 }
 
 class Cita {
-    constructor(fecha) {
-        //this.dia = dia;
-        //this.mes = mes;
-        this.fecha = fecha;
+    constructor(dia, mes) {
+        this.dia = dia;
+        this.mes = mes;
 
     }
     mostrarCita() {
@@ -41,8 +41,8 @@ class Tratamiento {
     }
 
     calcularCosto() {
-        total = this.precio + (IGVPERU * this.precio);
-        alert("Precio del tratamiento es S/." + total);
+        return total = this.precio + (IGVPERU * this.precio);
+        //alert("Precio del tratamiento es S/." + total);
     }
 }
 
@@ -57,6 +57,7 @@ tratamientos.push(new Tratamiento(2, "Extracción", 200));
 var miFormulario = document.getElementById("miFormulario");
 miFormulario.addEventListener("submit", agregarPaciente);
 var contenedorTratamientos = document.getElementById("tratamientos");
+var contenedorResumen = document.getElementById("resumen");
 
 var pacientes = [];
 var citas = [];
@@ -72,11 +73,12 @@ function mostrarTratamientos() {
         contenedorTratamientos.innerHTML += `<p> ${tratamiento.id}</p>
         <p><strong>Tratamiento:</strong> ${tratamiento.nombreTratamiento}</p><hr>`;
     }
-    contenedorTratamientos.innerHTML += ` <form action="#" method="GET" id="form2"> <input type="text" name="trata" required placeholder="Tratamiento" id="nombreTratamiento">`;
-    contenedorTratamientos.innerHTML += `<label for="start">Start date:</label>
-    <input type="date" id="start" name="trip-start"
-           value="2021-08-24"
-           min="2021-08-24" max="2021-12-31" id="fecha"> <br> <input type="submit" class="formulario__boton boton" value="Reservar cita" id="cita"> </form>`;
+    contenedorTratamientos.innerHTML += `<form action="#" method="GET" id="form2"> <input type="number" name="idTratamiento" required placeholder="idTratamiento" id="idTratamiento"> <hr> 
+    <input type="number" name="dia" required placeholder="día" id="dia"> <hr> <input type="text" name="mes" required placeholder="Mes" id="mes"> <hr>
+    <input type="submit" class="formulario__boton boton" value="Reservar cita" id="cita"> </form>`;
+    var formCita = document.getElementById("form2");
+    console.log(formCita.innerHTML);
+    formCita.addEventListener("submit", registrarCita);
 }
 
 
@@ -145,18 +147,26 @@ console.log(pacientes);
 function registrarCita(e) {
     e.preventDefault();
     var form = e.target;
-    nombreTratamiento = document.getElementById("nombreTratamiento").value;
-    console.log(nombreTratamiento);
-    fechaIngresado = document.getElementById("fecha").value;
-    citas.push(new Cita(fechaIngresado));
+    idTratamiento = document.getElementById("idTratamiento").value;
+    console.log(idTratamiento);
+    diaIngresado = document.getElementById("dia").value;
+    mesIngresado = document.getElementById("mes").value;
+    citas.push(new Cita(diaIngresado, mesIngresado));
     console.log(citas[0]);
+    //mostrarResumen(idTratamiento);
 
 }
 
-function mostrarTratamiento(idtratamiento) {
+function mostrarResumen(idtratamiento) {
     const encontrado = tratamientos.find(elemento => elemento.id === idtratamiento);
-    alert("El tratamiento que escogiste fue " + encontrado.nombreTratamiento);
-    encontrado.calcularCosto();
+    //var costo = encontrado.calcularCosto();
+
+    //alert("El tratamiento que escogiste fue " + encontrado.nombreTratamiento);
+
+    contenedorResumen.innerHTML = `<h3> Detalles de Cita</h3>
+    <p><strong> Tratamiento : </strong> ${encontrado.nombreTratamiento}</p>`;
+
+
 }
 
 //Elección de tratamiento
