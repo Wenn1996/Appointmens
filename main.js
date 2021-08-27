@@ -2,11 +2,11 @@ const IGVPERU = 0.18;
 
 //El proceso comienza cuando se va a la sección Saca tu cita
 
-var total;
-var reservar;
-var paciente1;
-var cita1;
-var datosValidos;
+let total;
+let reservar;
+let paciente1;
+let cita1;
+let datosValidos;
 var nombreIngresado;
 var edadIngresado;
 var idTratamiento;
@@ -42,8 +42,9 @@ class Tratamiento {
     }
 
     calcularCosto() {
-        return total = this.precio + (IGVPERU * this.precio);
+        this.precio = this.precio + (IGVPERU * this.precio);
         //alert("Precio del tratamiento es S/." + total);
+        return this.precio;
     }
 }
 
@@ -71,7 +72,7 @@ var citas = [];
 function mostrarTratamientos() {
     contenedorTratamientos.innerHTML = '<h3> 2. Escoge el tratamiento </h3> <br> <p>A continuación se presentará la lista de Tratamientos:</p>';
     //alert(" A continuación se presentará la lista de Tratamientos");
-    for (tratamiento of tratamientos) {
+    for (let tratamiento of tratamientos) {
         contenedorTratamientos.innerHTML += `<p> ${tratamiento.id}</p>
         <p><strong>Tratamiento:</strong> ${tratamiento.nombreTratamiento}</p><hr>`;
     }
@@ -83,14 +84,6 @@ function mostrarTratamientos() {
     formCita.addEventListener("submit", registrarCita);
 }
 
-
-// Función Saludar 
-function saludar() {
-    alert("Hola Bienvenido a Get Your Dentists");
-    reservar = prompt("Deseas una cita (s/n)");
-    alert("Por favor, ingresa al menu opción Cita");
-
-}
 
 //Función para validar Paciente
 function validarForm1() {
@@ -145,6 +138,21 @@ function agregarPaciente(e) {
 
 console.log(pacientes);
 
+function mostrarResumen(id, dia, mes) {
+    console.log(tratamientos);
+
+    const encontrado = tratamientos.find(elemento => elemento.id == id);
+    //var costo = encontrado.calcularCosto();
+
+    //alert("El tratamiento que escogiste fue " + encontrado.nombreTratamiento);
+    //falta ponerle precio
+    contenedorResumen.innerHTML = `<h3> Detalles de Cita</h3>
+    <p><strong> Tratamiento : </strong> ${encontrado.nombreTratamiento}</p> <br> 
+    <p><strong> Fecha : </strong> ${dia} de ${mes}</p> <br>
+    <p><strong> Costo : </strong> S/.${encontrado.calcularCosto()}</p> <br>`;
+
+
+}
 
 function registrarCita(e) {
     e.preventDefault();
@@ -155,20 +163,8 @@ function registrarCita(e) {
     mesIngresado = document.getElementById("mes").value;
     citas.push(new Cita(diaIngresado, mesIngresado));
     console.log(citas[0]);
-    //mostrarResumen(idTratamiento);
-    citas[0].mostrarCita();
-
-
-}
-
-function mostrarResumen(idtratamiento) {
-    const encontrado = tratamientos.find(elemento => elemento.id === idtratamiento);
-    //var costo = encontrado.calcularCosto();
-
-    //alert("El tratamiento que escogiste fue " + encontrado.nombreTratamiento);
-    //falta ponerle precio
-    contenedorResumen.innerHTML = `<h3> Detalles de Cita</h3>
-    <p><strong> Tratamiento : </strong> ${encontrado.nombreTratamiento}</p>`;
+    mostrarResumen(idTratamiento, diaIngresado, mesIngresado);
+    //citas[0].mostrarCita();
 
 
 }

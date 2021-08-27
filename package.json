@@ -1,18 +1,26 @@
 {
-    "name": "huariquesgo",
+    "name": "appointmens",
     "version": "1.0.0",
     "description": "",
     "main": "main.js",
+    "dependencies": {
+        "node-sass": "^6.0.1",
+        "nodemon": "^2.0.12"
+    },
+    "devDependencies": {},
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build-css": "node-sass --include-path scss scss/main.scss css/styles.css",
         "watch-css": "nodemon -e scss -x \"npm run build-css\""
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Wenn1996/Appointmens.git"
+    },
     "author": "",
     "license": "ISC",
-    "devDependencies": {
-        "node-sass": "^6.0.1",
-        "nodemon": "^2.0.12"
+    "bugs": {
+        "url": "https://github.com/Wenn1996/Appointmens/issues"
     },
-    "dependencies": {}
+    "homepage": "https://github.com/Wenn1996/Appointmens#readme"
 }
