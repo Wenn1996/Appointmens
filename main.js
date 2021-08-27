@@ -7,11 +7,12 @@ let reservar;
 let paciente1;
 let cita1;
 let datosValidos;
-var nombreIngresado;
-var edadIngresado;
-var idTratamiento;
-var diaIngresado;
-var mesIngresado;
+let datosValidos2;
+let nombreIngresado;
+let edadIngresado;
+let idTratamiento;
+let diaIngresado;
+let mesIngresado;
 
 // clases 
 class Paciente {
@@ -70,14 +71,18 @@ var citas = [];
 
 //Mostrar lista de tratamientos
 function mostrarTratamientos() {
-    contenedorTratamientos.innerHTML = '<h3> 2. Escoge el tratamiento </h3> <br> <p>A continuación se presentará la lista de Tratamientos:</p>';
+    contenedorTratamientos.innerHTML = '<p> 2. Escoge el horario de tu cita <p> <br> <p>A continuación se presentará la lista de Tratamientos:</p>';
     //alert(" A continuación se presentará la lista de Tratamientos");
     for (let tratamiento of tratamientos) {
         contenedorTratamientos.innerHTML += `<p> ${tratamiento.id}</p>
-        <p><strong>Tratamiento:</strong> ${tratamiento.nombreTratamiento}</p><hr>`;
+        <p><strong>Tratamiento:</strong> ${tratamiento.nombreTratamiento}</p>`;
     }
-    contenerdorFormCita.innerHTML = `<form action="#" method="GET" id="form2"> <label> Ingrese el id del tratamiento: </label> <input type="number" name="idTratamiento" required placeholder="idTratamiento" id="idTratamiento"> <br>
-    <label> Ingrese día: </label> <input type="number" name="dia" required placeholder="día" id="dia"> <br> <label> Ingrese mes ("Febrero"): </label> <input type="text" name="mes" required placeholder="Mes" id="mes"> <hr>
+    contenerdorFormCita.innerHTML = `<form action="#" method="GET" id="form2"> 
+    <label> Ingrese el id del tratamiento: </label> <br>
+    <input type="number" class="formulario__input" name="idTratamiento" required placeholder="idTratamiento" id="idTratamiento"> <br>
+    <label> Ingrese día: </label> <br>
+    <input type="number" class="formulario__input" name="dia" required placeholder="día" id="dia"> <br> 
+    <label> Ingrese mes ("Febrero"): </label> <br> <input type="text" class="formulario__input" name="mes" required placeholder="Mes" id="mes"> <br>
     <input type="submit" class="formulario__boton boton" value="Reservar cita" id="cita"> </form>`;
     var formCita = document.getElementById("form2");
     console.log(formCita.innerHTML);
@@ -100,15 +105,16 @@ function validarForm1() {
 }
 
 function validarCita() {
-    nombreTratamiento = document.getElementById("nombreTratamiento").value;
-    diaTratamiento = document.getElementById("").value;
-
-    while (nombreTratamiento == "") {
-        alert("Ingrese el número de tratamiento");
-        if (nombreTratamiento != "") {
-            break;
-        }
+    idTratamiento = document.getElementById("idTratamiento").value;
+    diaTratamiento = document.getElementById("dia").value;
+    mesIngresado = document.getElementById("mes").value;
+    if (idTratamiento == "" || diaTratamiento == "" || mesIngresado == "") {
+        alert("Debe completar todos los campos");
+        datosValidos2 = false;
+    } else {
+        datosValidos2 = true;
     }
+
 
 
 }
@@ -142,10 +148,7 @@ function mostrarResumen(id, dia, mes) {
     console.log(tratamientos);
 
     const encontrado = tratamientos.find(elemento => elemento.id == id);
-    //var costo = encontrado.calcularCosto();
 
-    //alert("El tratamiento que escogiste fue " + encontrado.nombreTratamiento);
-    //falta ponerle precio
     contenedorResumen.innerHTML = `<h3> Detalles de Cita</h3>
     <p><strong> Tratamiento : </strong> ${encontrado.nombreTratamiento}</p> <br> 
     <p><strong> Fecha : </strong> ${dia} de ${mes}</p> <br>
@@ -164,6 +167,9 @@ function registrarCita(e) {
     citas.push(new Cita(diaIngresado, mesIngresado));
     console.log(citas[0]);
     mostrarResumen(idTratamiento, diaIngresado, mesIngresado);
+    document.getElementById("idTratamiento").value = "";
+    diaIngresado = document.getElementById("dia").value = "";
+    mesIngresado = document.getElementById("mes").value = "";
     //citas[0].mostrarCita();
 
 
