@@ -200,6 +200,40 @@ h5 {
   100% {
     opacity: 1; } }
 
+.columna__evento {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px 300px;
+  font-family: 'Noto Sans JP', sans-serif; }
+
+.columna__container {
+  padding: 2px 16px; }
+
+.columna__titulo {
+  margin: 50px 0 0 0; }
+
+.columna__input {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 1px solid #7a7a7a;
+  display: inline-block;
+  align-content: center;
+  width: 30%;
+  font-family: 'Noto Sans JP', sans-serif; }
+
+.columna__input:hover {
+  border-color: white; }
+
+.columna__boton {
+  background-color: skyblue; }
+
+.columna__boton:hover {
+  background-color: black; }
+
 .gradiente {
   text-align: center;
   background-color: #7EB9CC;

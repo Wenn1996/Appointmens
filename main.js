@@ -49,7 +49,17 @@ class Tratamiento {
     }
 }
 
-//Declaramos un array para guardar objetos tipos tratamientos
+
+class Doctor {
+    constructor(id, nombre, especialidad, img) {
+        this.id = id;
+        this.nombre = nombre;
+        this.especialidad = especialidad;
+        this.img = img;
+    }
+}
+
+//Declaramos un array para guardar objetos tipos doctores
 const tratamientos = [];
 
 //Agregamos objetos al array
@@ -66,6 +76,36 @@ var contenedorResumen = document.getElementById("resumen");
 var pacientes = [];
 var citas = [];
 
+const doctores = [];
+//Agregamos objetos al array
+doctores.push(new Doctor(0, "Daniela Lopez", tratamientos[0].nombreTratamiento));
+doctores.push(new Doctor(1, "Lucia Espinoza", tratamientos[1].nombreTratamiento));
+doctores.push(new Doctor(2, "Rodrigo Sanchez", tratamientos[0].nombreTratamiento));
+doctores.push(new Doctor(3, "Samantha Torres", tratamientos[1].nombreTratamiento));
+console.log(doctores);
+
+
+
+mostrarDoctores();
+
+function mostrarDoctores() {
+    for (const doctor of doctores) {
+        $("#listadoc").append(`<div class="columna__evento">
+        <img class="cuadros__img translate" src="" alt=" " width="250 " height="250 ">
+                    <div class="columna__container">
+                    <h3 class="columna__titulo"> <b> ${doctor.nombre}</b></h3>
+                        <p> Experto en  ${doctor.especialidad}</p>
+                        <button id="btn${doctor.id}" class="columna__boton boton"> Saca tu cita </button>
+                    </div>`);
+
+        $(`#btn${doctor.id}`).on('click', function() {
+            alert(`Sacaras cita con el doctor ${doctor.nombre}`);
+        });
+    }
+
+
+
+}
 
 
 
