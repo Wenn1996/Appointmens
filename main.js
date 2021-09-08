@@ -91,7 +91,7 @@ mostrarDoctores();
 function mostrarDoctores() {
     for (const doctor of doctores) {
         $("#listadoc").append(`<div class="columna__evento">
-        <img class="cuadros__img translate" src="" alt=" " width="250 " height="250 ">
+        <img class="cuadros__img" src="" alt="../images/doctor${doctor.id}.jpg" width="250" height="250">
                     <div class="columna__container">
                     <h3 class="columna__titulo"> <b> ${doctor.nombre}</b></h3>
                         <p> Experto en  ${doctor.especialidad}</p>
