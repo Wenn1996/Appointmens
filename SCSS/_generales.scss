@@ -197,13 +197,20 @@ $base: 250px;
     }
 }
 
+#listadoc {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .columna__evento {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    margin: 20px 300px;
+    margin: 20px;
     font-family: 'Noto Sans JP', sans-serif;
 }
 
@@ -212,11 +219,11 @@ $base: 250px;
 }
 
 .columna__titulo {
-    margin: 50px 0 0 0;
+    margin: 20px 0 0 0;
 }
 
 .columna__input {
-    margin-top: 25px;
+    margin-top: 10px;
     margin-bottom: 15px;
     border: none;
     border-bottom: 1px solid rgb(122, 122, 122);

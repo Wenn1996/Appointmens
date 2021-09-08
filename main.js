@@ -90,13 +90,14 @@ mostrarDoctores();
 
 function mostrarDoctores() {
     for (const doctor of doctores) {
-        $("#listadoc").append(`<div class="columna__evento">
-        <img class="cuadros__img" src="" alt="../images/doctor${doctor.id}.jpg" width="250" height="250">
-                    <div class="columna__container">
-                    <h3 class="columna__titulo"> <b> ${doctor.nombre}</b></h3>
-                        <p> Experto en  ${doctor.especialidad}</p>
-                        <button id="btn${doctor.id}" class="columna__boton boton btnDoc"> Saca tu cita </button>
-                    </div>`);
+        $("#listadoc").append(
+            `<div class="columna__evento">
+        <img class="cuadros__img" src="images/doctor${doctor.id}.jpg" alt="" width="260" height="250">
+        <div class="columna__container">
+            <h3 class="columna__titulo"> <b> ${doctor.nombre}</b></h3>
+            <p> Experto en  ${doctor.especialidad}</p>
+            <button id="btn${doctor.id}" class="columna__boton boton btnDoc"> Saca tu cita </button>
+        </div>`);
 
         /*            
         $(`#btn${doctor.id}`).on('click', function() {
@@ -243,7 +244,7 @@ $('#botonPrincipal').click(function(e) {
     e.preventDefault();
     //Animamos sus propiedades CSS con animate
     $('html, body').animate({
-        scrollTop: $("#listadoc").offset().top
+        scrollTop: $("#docs").offset().top
     }, 2000);
 });
 
