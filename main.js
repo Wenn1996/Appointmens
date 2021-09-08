@@ -95,12 +95,13 @@ function mostrarDoctores() {
                     <div class="columna__container">
                     <h3 class="columna__titulo"> <b> ${doctor.nombre}</b></h3>
                         <p> Experto en  ${doctor.especialidad}</p>
-                        <button id="btn${doctor.id}" class="columna__boton boton"> Saca tu cita </button>
+                        <button id="btn${doctor.id}" class="columna__boton boton btnDoc"> Saca tu cita </button>
                     </div>`);
 
+        /*            
         $(`#btn${doctor.id}`).on('click', function() {
             alert(`Sacaras cita con el doctor ${doctor.nombre}`);
-        });
+        });*/
     }
 
 
@@ -172,6 +173,7 @@ function agregarPaciente(e) {
         console.log(pacientes);
         miFormulario.children[0].value = "";
         miFormulario.children[1].value = "";
+        $("#miFormulario").hide();
         mostrarTratamientos();
     } else {
         alert("No se puedo agregar paciente");
@@ -186,13 +188,32 @@ console.log(pacientes);
 
 function mostrarResumen(id, dia, mes) {
     console.log(tratamientos);
-
     const encontrado = tratamientos.find(elemento => elemento.id == id);
 
     contenedorResumen.innerHTML = `<h3> Detalles de Cita</h3>
     <p><strong> Tratamiento : </strong> ${encontrado.nombreTratamiento}</p> <br> 
     <p><strong> Fecha : </strong> ${dia} de ${mes}</p> <br>
     <p><strong> Costo : </strong> S/.${encontrado.calcularCosto()}</p> <br>`;
+
+    $("#resumen").append(`<h3 class="oferta_titulo">Está Oferta es para tí</h3>
+    <p class="oferta_parrafo">Saca tu segunda consulta con 50% de descuento</p>
+    <input type="submit" class="formulario__boton boton" value="Reservar cita" id="cita4">`);
+
+    //transiciones 
+
+    $(".oferta_titulo").fadeIn("slow", function() {
+        //Cuando termina de ocultarse el elemento lo mostramos nuevamente
+        $(".oferta_titulo").fadeOut(5000);
+    });
+    $(".oferta_parrafo").fadeIn("slow", function() {
+        //Cuando termina de ocultarse el elemento lo mostramos nuevamente
+        $(".oferta_parrafo").fadeOut(5000);
+    });
+    $("#cita4").fadeIn("slow", function() {
+        //Cuando termina de ocultarse el elemento lo mostramos nuevamente
+        $("#cita4").fadeOut(5000);
+    });
+
 
 
 }
@@ -206,6 +227,8 @@ function registrarCita(e) {
     mesIngresado = document.getElementById("mes").value;
     citas.push(new Cita(diaIngresado, mesIngresado));
     console.log(citas[0]);
+    $("#tratamientos").hide();
+    $("#citasform").hide();
     mostrarResumen(idTratamiento, diaIngresado, mesIngresado);
     document.getElementById("idTratamiento").value = "";
     diaIngresado = document.getElementById("dia").value = "";
@@ -214,3 +237,22 @@ function registrarCita(e) {
 
 
 }
+
+// Cuando hago clic en Descubre
+$('#botonPrincipal').click(function(e) {
+    e.preventDefault();
+    //Animamos sus propiedades CSS con animate
+    $('html, body').animate({
+        scrollTop: $("#listadoc").offset().top
+    }, 2000);
+});
+
+//Cuando hago clic en Saca Cita
+
+$('.btnDoc').click(function(e) {
+    e.preventDefault();
+    //Animamos sus propiedades CSS con animate
+    $('html, body').animate({
+        scrollTop: $("#registrate").offset().top
+    }, 2000);
+});
