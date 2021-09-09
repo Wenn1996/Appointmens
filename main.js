@@ -62,10 +62,10 @@ class Doctor {
 //Declaramos un array para guardar objetos tipos doctores
 const tratamientos = [];
 
-//Agregamos objetos al array
+/*
 tratamientos.push(new Tratamiento(0, "Ortodoncia", 100));
 tratamientos.push(new Tratamiento(1, "Endodoncia", 60));
-tratamientos.push(new Tratamiento(2, "Extracción", 200));
+tratamientos.push(new Tratamiento(2, "Extracción", 200));*/
 
 var miFormulario = document.getElementById("miFormulario");
 miFormulario.addEventListener("submit", agregarPaciente);
@@ -78,10 +78,10 @@ var citas = [];
 
 const doctores = [];
 //Agregamos objetos al array
-doctores.push(new Doctor(0, "Daniela Lopez", tratamientos[0].nombreTratamiento));
-doctores.push(new Doctor(1, "Lucia Espinoza", tratamientos[1].nombreTratamiento));
-doctores.push(new Doctor(2, "Rodrigo Sanchez", tratamientos[0].nombreTratamiento));
-doctores.push(new Doctor(3, "Samantha Torres", tratamientos[1].nombreTratamiento));
+doctores.push(new Doctor(0, "Daniela Lopez", "Ortodoncia"));
+doctores.push(new Doctor(1, "Lucia Espinoza", "Endodoncia"));
+doctores.push(new Doctor(2, "Rodrigo Sanchez", "Extracción"));
+doctores.push(new Doctor(3, "Samantha Torres", "Endodoncia"));
 console.log(doctores);
 
 
@@ -114,11 +114,30 @@ function mostrarDoctores() {
 //Mostrar lista de tratamientos
 function mostrarTratamientos() {
     contenedorTratamientos.innerHTML = '<p> 2. Escoge el horario de tu cita <p> <br> <p>A continuación se presentará la lista de Tratamientos:</p>';
-    //alert(" A continuación se presentará la lista de Tratamientos");
+
+    const URLJSON = "Data/tratamientos.json";
+
+    console.log(URLJSON);
+    /*
     for (let tratamiento of tratamientos) {
         contenedorTratamientos.innerHTML += `<p> ${tratamiento.id}</p>
         <p><strong>Tratamiento:</strong> ${tratamiento.nombreTratamiento}</p>`;
-    }
+    }*/
+
+    $("#btn1").click(() => {
+        $.getJSON(URLJSON, function(respuesta, estado) {
+            if (estado === "success") {
+                let misDatos = respuesta;
+                for (const dato of misDatos) {
+                    $("tratamientos").append(`
+                                       <h3>${dato.id}</h3>
+                                       <p> ${dato.nombreTratamiento}</p>
+                                      `);
+                }
+            }
+        });
+    });
+
     contenerdorFormCita.innerHTML = `<form action="#" method="GET" id="form2"> 
     <label> Ingrese el id del tratamiento: </label> <br>
     <input type="number" class="formulario__input" name="idTratamiento" required placeholder="idTratamiento" id="idTratamiento"> <br>

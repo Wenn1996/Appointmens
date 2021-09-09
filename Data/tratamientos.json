@@ -1,0 +1,16 @@
+[{
+        "id": 1,
+        "nombreTratamiento": "Ortodoncia",
+        "precio": 100
+    },
+    {
+        "id": 2,
+        "nombreTratamiento": "Endodoncia",
+        "precio": 60
+    },
+    {
+        "id": 3,
+        "nombreTratamiento": "Extracción",
+        "precio": 200
+    }
+]
