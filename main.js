@@ -113,9 +113,10 @@ function mostrarDoctores() {
 
 //Mostrar lista de tratamientos
 function mostrarTratamientos() {
-    contenedorTratamientos.innerHTML = '<p> 2. Escoge el horario de tu cita <p> <br> <p>A continuación se presentará la lista de Tratamientos:</p>';
+    contenedorTratamientos.innerHTML = '<p> 2. Escoge el horario de tu cita </p> <br> <p>A continuación se presentará la lista de Tratamientos:</p> <br> <input type="submit" class="formulario__boton boton" value="Mostrar tratamientos" id="btn2">';
 
-    const URLJSON = "Data/tratamientos.json";
+
+    const URLJSON = "data.json"
 
     console.log(URLJSON);
     /*
@@ -124,12 +125,13 @@ function mostrarTratamientos() {
         <p><strong>Tratamiento:</strong> ${tratamiento.nombreTratamiento}</p>`;
     }*/
 
-    $("#btn1").click(() => {
+    $("#btn2").click(() => {
         $.getJSON(URLJSON, function(respuesta, estado) {
             if (estado === "success") {
-                let misDatos = respuesta;
+                let misDatos = respuesta.tratamientos;
+                console.log(respuesta.tratamientos);
                 for (const dato of misDatos) {
-                    $("tratamientos").append(`
+                    $("#tratamientos").append(`
                                        <h3>${dato.id}</h3>
                                        <p> ${dato.nombreTratamiento}</p>
                                       `);
@@ -146,7 +148,6 @@ function mostrarTratamientos() {
     <label> Ingrese mes ("Febrero"): </label> <br> <input type="text" class="formulario__input" name="mes" required placeholder="Mes" id="mes"> <br>
     <input type="submit" class="formulario__boton boton" value="Reservar cita" id="cita"> </form>`;
     var formCita = document.getElementById("form2");
-    console.log(formCita.innerHTML);
     formCita.addEventListener("submit", registrarCita);
 }
 
