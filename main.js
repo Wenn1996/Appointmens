@@ -113,7 +113,7 @@ function mostrarDoctores() {
 
 //Mostrar lista de tratamientos
 function mostrarTratamientos() {
-    contenedorTratamientos.innerHTML = '<p> 2. Escoge el horario de tu cita </p> <br> <p>A continuación se presentará la lista de Tratamientos:</p> <br> <input type="submit" class="formulario__boton boton" value="Mostrar tratamientos" id="btn2">';
+    contenedorTratamientos.innerHTML = '<p> 2. Escoge el horario de tu cita </p> <br> <p>A continuación se presentará la lista de Tratamientos:</p> <br> <button class="formulario__boton boton" id="btn2">Mostrar tratamiento </button>';
 
 
     const URLJSON = "data.json"
