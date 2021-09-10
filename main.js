@@ -130,6 +130,7 @@ function mostrarTratamientos() {
                 let misDatos = respuesta.tratamientos;
                 console.log(respuesta.tratamientos);
                 for (const dato of misDatos) {
+                    tratamientos.push(new Tratamiento(parseInt(dato.id), dato.nombreTratamiento, parseInt(dato.precio)));
                     $("#tratamientos").append(`
                                        <h3>${dato.id}</h3>
                                        <p> ${dato.nombreTratamiento}</p>
@@ -138,6 +139,7 @@ function mostrarTratamientos() {
             }
         });
     });
+    console.log(tratamientos);
 
 
 
