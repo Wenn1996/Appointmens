@@ -115,7 +115,6 @@ function mostrarDoctores() {
 function mostrarTratamientos() {
     contenedorTratamientos.innerHTML = '<p> 2. Escoge el horario de tu cita </p> <br> <p>A continuación se presentará la lista de Tratamientos:</p> <br> <button class="formulario__boton boton" id="btn2">Mostrar tratamiento </button>';
 
-
     const URLJSON = "data.json"
 
     console.log(URLJSON);
@@ -125,7 +124,7 @@ function mostrarTratamientos() {
         <p><strong>Tratamiento:</strong> ${tratamiento.nombreTratamiento}</p>`;
     }*/
 
-    $("#btn2").click(() => {
+    $(document).on("click", "#btn2", () => {
         $.getJSON(URLJSON, function(respuesta, estado) {
             if (estado === "success") {
                 let misDatos = respuesta.tratamientos;
@@ -139,6 +138,8 @@ function mostrarTratamientos() {
             }
         });
     });
+
+
 
     contenerdorFormCita.innerHTML = `<form action="#" method="GET" id="form2"> 
     <label> Ingrese el id del tratamiento: </label> <br>
