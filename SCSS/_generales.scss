@@ -70,11 +70,15 @@ $base: 250px;
 }
 
 .tarjeta__div:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
 }
 
 .tarjeta__pasos {
     text-align: justify;
+}
+
+.cuadros__img {
+    border-radius: 1%;
 }
 
 
@@ -89,6 +93,7 @@ $base: 250px;
     padding: 15px 32px;
     display: block;
     margin-top: 15px;
+    border-radius: 4%;
 }
 
 .boton:hover {
@@ -212,6 +217,7 @@ $base: 250px;
     flex-wrap: wrap;
     margin: 20px;
     font-family: 'Noto Sans JP', sans-serif;
+    border-radius: 1%;
 }
 
 .columna__container {
@@ -243,4 +249,76 @@ $base: 250px;
 
 .columna__boton:hover {
     background-color: black;
+}
+
+//modal
+.modal-container {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    width: 40%;
+    height: 50%;
+    background: #fff;
+    /*overflow: hidden;*/
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    transition: transform 1s;
+    transform: translateY(0%);
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: #c44a4a;
+    color: #fff;
+    line-height: 25px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.modal-close {
+    transform: translateY(-200%);
+}
+
+.modal>img {
+    height: 30%;
+}
+
+#Register {
+    justify-content: center;
+    align-items: center;
+    #btnRegistrate {
+        display: inline-block;
+        margin: 0 100px;
+    }
+}
+
+// forms para sacar cita
+.reservarCita {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    height: 95vh;
+    margin-top: 50px;
 }

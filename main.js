@@ -13,12 +13,16 @@ let edadIngresado;
 let idTratamiento;
 let diaIngresado;
 let mesIngresado;
+let correoIngresado;
+let contrasenaIngresado;
+let dniIngresado;
 
 // clases 
 class Paciente {
-    constructor(nombre, edad) {
+    constructor(nombre, edad, dni) {
         this.nombre = nombre;
         this.edad = edad;
+        this.dni = dni;
     }
 }
 
@@ -59,22 +63,81 @@ class Doctor {
     }
 }
 
-//Declaramos un array para guardar objetos tipos doctores
-const tratamientos = [];
+class Usuario {
+    constructor(correo, contrasena) {
+        this.correo = correo;
+        this.contrasena = contrasena;
+    }
+}
 
-/*
-tratamientos.push(new Tratamiento(0, "Ortodoncia", 100));
-tratamientos.push(new Tratamiento(1, "Endodoncia", 60));
-tratamientos.push(new Tratamiento(2, "Extracción", 200));*/
+//Modal de registro
 
-var miFormulario = document.getElementById("miFormulario");
-miFormulario.addEventListener("submit", agregarPaciente);
-var contenedorTratamientos = document.getElementById("tratamientos");
-var contenerdorFormCita = document.getElementById("citasform");
-var contenedorResumen = document.getElementById("resumen");
+var usuarios = [];
+let cerrar = document.querySelectorAll(".close")[0];
+let abrir = document.querySelectorAll(".cta")[0];
+let modal = document.querySelectorAll(".modal")[0];
+let modalC = document.querySelectorAll(".modal-container")[0];
+let cerrar2 = document.getElementById("btnRegistrate");
+var miRegistro = document.getElementById("Register");
+miRegistro.addEventListener("submit", agregarUsuario);
 
-var pacientes = [];
-var citas = [];
+abrir.addEventListener("click", function(e) {
+    e.preventDefault();
+    modalC.style.opacity = "1";
+    modalC.style.visibility = "visible";
+    modal.classList.toggle("modal-close");
+});
+
+cerrar.addEventListener("click", function() {
+    modal.classList.toggle("modal-close");
+
+    setTimeout(function() {
+        modalC.style.opacity = "0";
+        modalC.style.visibility = "hidden";
+    }, 1000)
+})
+
+window.addEventListener("click", function(e) {
+    console.log(e.target);
+    if (e.target == modalC) {
+        modal.classList.toggle("modal-close");
+
+        setTimeout(function() {
+            modalC.style.opacity = "0";
+            modalC.style.visibility = "hidden";
+        }, 1000)
+    }
+})
+
+
+
+function agregarUsuario(e) {
+    e.preventDefault();
+    validarRegistro();
+    if (datosValidos) {
+        var form = e.target;
+        correoIngresado = miRegistro.children[0].value;
+        contrasenaIngresado = miFormulario.children[1].value;
+        usuarios.push(new Usuario(correoIngresado, contrasenaIngresado));
+        console.log(usuarios);
+        sessionStorage.setItem('usuarioactual', usuarios[0]);
+        modal.classList.toggle("modal-close");
+        setTimeout(function() {
+            modalC.style.opacity = "0";
+            modalC.style.visibility = "hidden";
+        }, 800)
+        $(".cta").hide();
+        $(".lista").append(`<p> Bienvenido ${correoIngresado}</p>`);
+        miRegistro.children[0].value = "";
+        miRegistro.children[1].value = "";
+
+
+    } else {
+        alert("Error. No se pudo registrar");
+    }
+
+}
+
 
 const doctores = [];
 //Agregamos objetos al array
@@ -90,9 +153,9 @@ mostrarDoctores();
 
 function mostrarDoctores() {
     for (const doctor of doctores) {
-        $("#listadoc").append(
-            `<div class="columna__evento">
-        <img class="cuadros__img" src="images/doctor${doctor.id}.jpg" alt="" width="260" height="250">
+        $("#listadoc").append(`
+        <div class="columna__evento">
+            <img class="cuadros__img" src="images/doctor${doctor.id}.jpg" alt="" width="270" height="250">
         <div class="columna__container">
             <h3 class="columna__titulo"> <b> ${doctor.nombre}</b></h3>
             <p> Experto en  ${doctor.especialidad}</p>
@@ -108,12 +171,21 @@ function mostrarDoctores() {
 
 
 }
+//Formulario de registro de paciente
+var miFormulario = document.getElementById("miFormulario");
+miFormulario.addEventListener("submit", agregarPaciente);
+var contenedorTratamientos = document.getElementById("tratamientos");
+var contenerdorFormCita = document.getElementById("citasform");
+var contenedorResumen = document.getElementById("resumen");
 
-
+let pacientes = [];
+let citas = [];
+let tratamientos = [];
 
 //Mostrar lista de tratamientos
 function mostrarTratamientos() {
-    contenedorTratamientos.innerHTML = '<p> 2. Escoge el horario de tu cita </p> <br> <p>A continuación se presentará la lista de Tratamientos:</p> <br> <button class="formulario__boton boton" id="btn2">Mostrar tratamiento </button>';
+    $(".unete").hide();
+    contenedorTratamientos.innerHTML = ' <h1 class="tituloSecundario">Saca tu cita!</h1> <p> 2. Escoge el horario de tu cita </p> <br> <p>A continuación se presentará la lista de Tratamientos:</p> <br> <button class="formulario__boton boton" id="btn2">Mostrar tratamiento </button>';
 
     const URLJSON = "data.json"
 
@@ -155,11 +227,28 @@ function mostrarTratamientos() {
 }
 
 
+
+//funcion para validar formulario de registro
+function validarRegistro() {
+    correoIngresado = miRegistro.children[0].value;
+    contrasenaIngresado = miRegistro.children[1].value;
+    if (correoIngresado == "" || contrasenaIngresado == "") {
+        alert("Debe completar todos los campos");
+        datosValidos = false;
+    } else {
+        datosValidos = true;
+    }
+
+
+}
+
+
 //Función para validar Paciente
 function validarForm1() {
-    nombreIngresado = miFormulario.children[0].value;
-    edadIngresado = miFormulario.children[1].value;
-    if (nombreIngresado == "" || edadIngresado == "") {
+    nombreIngresado = miFormulario.children[1].value;
+    edadIngresado = miFormulario.children[2].value;
+    dniIngresado = miFormulario.children[3].value;
+    if (nombreIngresado == "" || edadIngresado == "" || dniIngresado == "") {
         alert("Debe completar todos los campos");
         datosValidos = false;
     } else {
@@ -191,12 +280,14 @@ function agregarPaciente(e) {
     validarForm1();
     if (datosValidos) {
         var form = e.target;
-        nombreIngresado = miFormulario.children[0].value;
-        edadIngresado = miFormulario.children[1].value;
-        pacientes.push(new Paciente(nombreIngresado, edadIngresado));
+        nombreIngresado = miFormulario.children[1].value;
+        edadIngresado = miFormulario.children[2].value;
+        dniIngresado = miFormulario.children[3].value;
+        pacientes.push(new Paciente(nombreIngresado, edadIngresado, dniIngresado));
         console.log(pacientes);
         miFormulario.children[0].value = "";
         miFormulario.children[1].value = "";
+        miFormulario.children[2].value = "";
         $("#miFormulario").hide();
         mostrarTratamientos();
     } else {

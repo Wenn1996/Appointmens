@@ -17,6 +17,14 @@ header {
                     font-family: 'Noto Sans JP', sans-serif;
                 }
             }
+            input {
+                display: inline-block;
+                margin: 0 0 0 600px;
+            }
+            p {
+                display: inline-block;
+                margin: 0 0 0 500px;
+            }
         }
     }
 }

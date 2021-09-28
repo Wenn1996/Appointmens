@@ -34,6 +34,7 @@
                 <li class="lista__elemento"><a class="lista__link" href="#quintoBanner">Citas</a></li>
 
                 <li class="lista__elemento"><a class="lista__link" href="#registrate">Registrate</a></li>
+                <input type="button" value="Registrate" class="titulo__boton boton cta">
             </ul>
         </nav>
     </header>
@@ -58,7 +59,23 @@
             </div>
         </section>
 
+        <div class="modal-container">
+            <div class="modal modal-close">
+                <p class="close">X</p>
+                <img src="./images/modal.svg" alt="">
+                <div class="modal-textos">
+                    <h2>Registrate</h2>
+                    <form action="#" method="GET" id="Register">
+                        <input type="text" class="formulario__input" required placeholder="Correo" id="correo">
+                        <input type="password" class="formulario__input" required placeholder="Contraseña" id="contraseña">
 
+                        <!--boton-->
+                        <input type="submit" class="formulario__boton boton" value="Registrate" id="btnRegistrate">
+
+                    </form>
+                </div>
+            </div>
+        </div>
 
 
         <section id="docs">
@@ -75,24 +92,26 @@
                 <h1 class="tituloSecundario">Saca tu cita!</h1>
                 <form action="#" method="GET" id="miFormulario">
                     <p class="formulario__parrafo"> 1. Registra tus datos</p>
-                    <input type="text" class="formulario__input" name="nombre_contacto" required placeholder="Nombre" id="nombre">
-                    <input type="number" class="formulario__input" name="numero_contacto" required placeholder="Edad" id="edad">
-
+                    <input type="text" class="formulario__input" name="nombre_contacto" required placeholder="Nombre completo" id="nombre">
+                    <input type="number" class="formulario__input" name="edad" required placeholder="Edad" id="edad">
+                    <input type="number" class="formulario__input" name="dni" required placeholder="DNI" id="dni">
                     <!--boton-->
                     <input type="submit" class="formulario__boton boton" value="Siguiente" id="btn1">
 
                 </form>
+            </div>
+        </section>
 
-                <div id="tratamientos">
+        <section class="reservarCita">
+            <div id="tratamientos">
 
-                </div>
-                <div id="citasform">
+            </div>
+            <div id="citasform">
 
-                </div>
-                <div id="resumen">
+            </div>
+            <div id="resumen">
 
 
-                </div>
             </div>
         </section>
     </main>
