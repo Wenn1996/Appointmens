@@ -307,11 +307,19 @@ h5 {
 
 #appointment {
   align-items: center;
-  justify-content: center;
   display: inline-block;
   flex-direction: column;
   text-align: center;
-  margin: 0; }
+  margin: 20px 0 0 0; }
+  #appointment #form2 {
+    text-align: center; }
+    #appointment #form2 .datatable {
+      margin: auto; }
+    #appointment #form2 #cita {
+      text-align: center;
+      align-items: center;
+      align-content: center;
+      margin: 10px 0; }
 
 .gradiente {
   text-align: center;

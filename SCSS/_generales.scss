@@ -315,9 +315,20 @@ $base: 250px;
 
 #appointment {
     align-items: center;
-    justify-content: center;
     display: inline-block;
     flex-direction: column;
     text-align: center;
-    margin: 0;
+    margin: 20px 0 0 0;
+    #form2 {
+        text-align: center;
+        .datatable {
+            margin: auto;
+        }
+        #cita {
+            text-align: center;
+            align-items: center;
+            align-content: center;
+            margin: 10px 0;
+        }
+    }
 }

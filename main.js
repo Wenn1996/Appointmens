@@ -203,7 +203,7 @@ function mostrarTratamientos() {
     //$(".unete").hide();
     $("#tratamientos").show();
 
-    contenedorTratamientos.innerHTML = '<p> 2. Escoge el horario de tu cita </p> <br> <p>A continuación se presentará la lista de Tratamientos:</p> <br>';
+    contenedorTratamientos.innerHTML = '<p> 2. Escoge el horario de tu cita </p> <br> <p>Escoge el tratamiento para tu cita:</p> <br>';
 
     const URLJSON = "data.json"
 
@@ -235,12 +235,12 @@ function mostrarTratamientos() {
 function mostrarCitas(filtro) {
     $("#appointment").show();
     console.log(filtro);
-    let tablacitas = ` <form action="#" method="GET" id="form2"><table class="datatable"><thead><tr><th>Seleccionar</th><th>Fecha</th> <th>Hora</th></tr></thead><tbody>`;
+    let tablacitas = `<form action="#" method="GET" id="form2"><p>Horarios disponibles</p><table class="datatable"><thead><tr><th>Seleccionar</th><th>Fecha</th> <th>Hora</th></tr></thead><tbody>`;
     for (let cita of filtro) {
-        tablacitas += `<td class="table-checkbox"><input type="radio" value="${cita.id}" class="elegirC" name="rbtn"></td><td>${cita.fecha}</td> <td> ${cita.hora}</td><br></tbody> `;
+        tablacitas += `<td class="table-checkbox"><input type="radio" value="${cita.id}" class="elegirC" name="rbtn"></td><td>${cita.fecha}</td> <td> ${cita.hora}</td></tbody> `;
     }
 
-    contenedorlistacitas.innerHTML = `  ${tablacitas} </tbody> </table> <input type="submit" class="formulario__boton boton" value="Reservar cita" id="cita"> </form> `;
+    contenedorlistacitas.innerHTML = `${tablacitas} </tbody> </table> <input type="submit" class=" boton" value="Reservar cita" id="cita"> </form> `;
     var formCita = document.getElementById("form2");
     formCita.addEventListener("submit", registrarCita2);
 }
