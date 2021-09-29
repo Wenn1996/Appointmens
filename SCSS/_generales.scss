@@ -312,3 +312,12 @@ $base: 250px;
         margin: 0 100px;
     }
 }
+
+#appointment {
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+}

@@ -203,7 +203,7 @@ function mostrarTratamientos() {
     //$(".unete").hide();
     $("#tratamientos").show();
 
-    contenedorTratamientos.innerHTML = ' <h1 class="tituloSecundario">Saca tu cita!</h1> <p> 2. Escoge el horario de tu cita </p> <br> <p>A continuación se presentará la lista de Tratamientos:</p> <br>';
+    contenedorTratamientos.innerHTML = '<p> 2. Escoge el horario de tu cita </p> <br> <p>A continuación se presentará la lista de Tratamientos:</p> <br>';
 
     const URLJSON = "data.json"
 
@@ -235,7 +235,7 @@ function mostrarTratamientos() {
 function mostrarCitas(filtro) {
     $("#appointment").show();
     console.log(filtro);
-    let tablacitas = ` <form action="#" method="GET" id="form2"> <table class="datatable"><thead><tr><th>Status</th><th>Name</th> <th>Position</th></tr></thead><tbody>`;
+    let tablacitas = ` <form action="#" method="GET" id="form2"><table class="datatable"><thead><tr><th>Seleccionar</th><th>Fecha</th> <th>Hora</th></tr></thead><tbody>`;
     for (let cita of filtro) {
         tablacitas += `<td class="table-checkbox"><input type="radio" value="${cita.id}" class="elegirC" name="rbtn"></td><td>${cita.fecha}</td> <td> ${cita.hora}</td><br></tbody> `;
     }
