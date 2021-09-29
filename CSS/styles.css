@@ -305,14 +305,6 @@ h5 {
     display: inline-block;
     margin: 0 100px; }
 
-.reservarCita {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 0;
-  height: 95vh;
-  margin-top: 50px; }
-
 .gradiente {
   text-align: center;
   background-color: #7EB9CC;

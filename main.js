@@ -26,7 +26,7 @@ class Paciente {
     }
 }
 
-class Cita {
+/*class Cita {
     constructor(dia, mes) {
         this.dia = dia;
         this.mes = mes;
@@ -36,6 +36,23 @@ class Cita {
         alert(" Tu cita está programada para " + this.dia + " de " + this.mes);
     }
 
+}*/
+
+class Cita {
+    constructor(id, fecha, hora, idTratamiento, idDoctor) {
+        this.id = id;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.idTratamiento = idTratamiento;
+        this.idDoctor = idDoctor;
+    }
+}
+
+class ReservaCita {
+    constructor(idCita, idPaciente) {
+        this.idCita = idCita;
+        this.idPaciente = idPaciente;
+    }
 }
 
 
@@ -69,6 +86,22 @@ class Usuario {
         this.contrasena = contrasena;
     }
 }
+
+let reservas = [];
+let citas = [];
+citas.push(new Cita(0, "28/09/2021", "09:30", 1, 0));
+citas.push(new Cita(1, "28/09/2021", "10:30", 2, 1));
+citas.push(new Cita(2, "28/09/2021", "11:30", 3, 2));
+citas.push(new Cita(3, "29/09/2021", "09:30", 1, 0));
+citas.push(new Cita(4, "29/09/2021", "10:30", 1, 0));
+citas.push(new Cita(5, "29/09/2021", "11:30", 2, 3));
+citas.push(new Cita(6, "30/09/2021", "09:30", 2, 3));
+citas.push(new Cita(7, "30/09/2021", "10:30", 3, 2));
+citas.push(new Cita(8, "30/09/2021", "11:30", 3, 2));
+citas.push(new Cita(9, "30/09/2021", "12:30", 1, 0));
+citas.push(new Cita(10, "30/09/2021", "13:30", 2, 1));
+citas.push(new Cita(11, "30/09/2021", "14:30", 3, 2));
+console.log(citas);
 
 //Modal de registro
 
@@ -146,10 +179,8 @@ doctores.push(new Doctor(1, "Lucia Espinoza", "Endodoncia"));
 doctores.push(new Doctor(2, "Rodrigo Sanchez", "Extracción"));
 doctores.push(new Doctor(3, "Samantha Torres", "Endodoncia"));
 console.log(doctores);
-
-
-
 mostrarDoctores();
+
 
 function mostrarDoctores() {
     for (const doctor of doctores) {
@@ -162,71 +193,69 @@ function mostrarDoctores() {
             <button id="btn${doctor.id}" class="columna__boton boton btnDoc"> Saca tu cita </button>
         </div>`);
 
-        /*            
-        $(`#btn${doctor.id}`).on('click', function() {
-            alert(`Sacaras cita con el doctor ${doctor.nombre}`);
-        });*/
     }
 
 
-
 }
+
+
+
 //Formulario de registro de paciente
 var miFormulario = document.getElementById("miFormulario");
 miFormulario.addEventListener("submit", agregarPaciente);
 var contenedorTratamientos = document.getElementById("tratamientos");
 var contenerdorFormCita = document.getElementById("citasform");
 var contenedorResumen = document.getElementById("resumen");
+let contenedorlistacitas = document.getElementById("appointment");
 
 let pacientes = [];
-let citas = [];
+
 let tratamientos = [];
 
 //Mostrar lista de tratamientos
 function mostrarTratamientos() {
-    $(".unete").hide();
-    contenedorTratamientos.innerHTML = ' <h1 class="tituloSecundario">Saca tu cita!</h1> <p> 2. Escoge el horario de tu cita </p> <br> <p>A continuación se presentará la lista de Tratamientos:</p> <br> <button class="formulario__boton boton" id="btn2">Mostrar tratamiento </button>';
+    //$(".unete").hide();
+    contenedorTratamientos.innerHTML = ' <h1 class="tituloSecundario">Saca tu cita!</h1> <p> 2. Escoge el horario de tu cita </p> <br> <p>A continuación se presentará la lista de Tratamientos:</p> <br>';
 
     const URLJSON = "data.json"
 
     console.log(URLJSON);
-    /*
-    for (let tratamiento of tratamientos) {
-        contenedorTratamientos.innerHTML += `<p> ${tratamiento.id}</p>
-        <p><strong>Tratamiento:</strong> ${tratamiento.nombreTratamiento}</p>`;
-    }*/
+    $.getJSON(URLJSON, function(respuesta, estado) {
 
-    $(document).on("click", "#btn2", () => {
-        $.getJSON(URLJSON, function(respuesta, estado) {
-            if (estado === "success") {
-                let misDatos = respuesta.tratamientos;
-                console.log(respuesta.tratamientos);
-                for (const dato of misDatos) {
-                    tratamientos.push(new Tratamiento(parseInt(dato.id), dato.nombreTratamiento, parseInt(dato.precio)));
-                    $("#tratamientos").append(`
-                                       <h3>${dato.id}</h3>
-                                       <p> ${dato.nombreTratamiento}</p>
-                                      `);
-                }
+        if (estado === "success") {
+            let misDatos = respuesta.tratamientos;
+            console.log(respuesta.tratamientos);
+            let options = `<select class="inputsClass">`;
+            for (const dato of misDatos) {
+                tratamientos.push(new Tratamiento(parseInt(dato.id), dato.nombreTratamiento, parseInt(dato.precio)));
+                options += `<option value="${dato.id}">${dato.nombreTratamiento}</option>`;
+
             }
-        });
+            options += `</select>`;
+            $("#tratamientos").append(options);
+            $(".inputsClass").change(function(e) {
+                console.log(e.target.value);
+                console.log(this.value);
+                const filtro3 = citas.filter(elemento => elemento.idTratamiento == parseInt(e.target.value));
+                mostrarCitas(filtro3);
+            });
+        }
     });
-    console.log(tratamientos);
 
-
-
-    contenerdorFormCita.innerHTML = `<form action="#" method="GET" id="form2"> 
-    <label> Ingrese el id del tratamiento: </label> <br>
-    <input type="number" class="formulario__input" name="idTratamiento" required placeholder="idTratamiento" id="idTratamiento"> <br>
-    <label> Ingrese día: </label> <br>
-    <input type="number" class="formulario__input" name="dia" required placeholder="día" id="dia"> <br> 
-    <label> Ingrese mes ("Febrero"): </label> <br> <input type="text" class="formulario__input" name="mes" required placeholder="Mes" id="mes"> <br>
-    <input type="submit" class="formulario__boton boton" value="Reservar cita" id="cita"> </form>`;
-    var formCita = document.getElementById("form2");
-    formCita.addEventListener("submit", registrarCita);
 }
 
+function mostrarCitas(filtro) {
 
+    console.log(filtro);
+    let tablacitas = ` <form action="#" method="GET" id="form2"> <table class="datatable"><thead><tr><th>Status</th><th>Name</th> <th>Position</th></tr></thead><tbody>`;
+    for (let cita of filtro) {
+        tablacitas += `<td class="table-checkbox"><input type="checkbox" value"${cita.id}"class="elegir" name=""></td><td>${cita.fecha}</td> <td> ${cita.hora}</td><br></tbody> `;
+    }
+
+    contenedorlistacitas.innerHTML = `  ${tablacitas} </tbody> </table> <input type="submit" class="formulario__boton boton" value="Reservar cita" id="cita"> </form> `;
+    var formCita = document.getElementById("form2");
+    formCita.addEventListener("submit", registrarCita2);
+}
 
 //funcion para validar formulario de registro
 function validarRegistro() {
@@ -289,15 +318,14 @@ function agregarPaciente(e) {
         miFormulario.children[1].value = "";
         miFormulario.children[2].value = "";
         $("#miFormulario").hide();
+        //el alto del div tratamientos
+        //contenedorTratamientos.style.height = "90vh";
+        //contenedorTratamientos.style.marginTop = "200px";
         mostrarTratamientos();
     } else {
         alert("No se puedo agregar paciente");
     }
-    miFormulario.children[0].value = "";
-    miFormulario.children[1].value = "";
 }
-
-
 
 console.log(pacientes);
 
@@ -336,6 +364,8 @@ function mostrarResumen(id, dia, mes) {
 function registrarCita(e) {
     e.preventDefault();
     var form = e.target;
+
+
     idTratamiento = document.getElementById("idTratamiento").value;
     console.log(idTratamiento);
     diaIngresado = document.getElementById("dia").value;
@@ -349,9 +379,29 @@ function registrarCita(e) {
     diaIngresado = document.getElementById("dia").value = "";
     mesIngresado = document.getElementById("mes").value = "";
     //citas[0].mostrarCita();
+}
 
+function registrarCita2(e) {
+    e.preventDefault();
+    var form = e.target;
+    for (let checkbox of $(".elegir")) {
+        if (checkbox.checked) {
+            console.log("Se ha checkeado el " + checkbox.value);
+        } else {
+            console.log("NO Se ha checkeado el " + checkbox.value);
+        }
+    }
+
+
+    console.log(reservas);
+    $("#tratamientos").hide();
+    //mostrarResumen(idTratamiento, diaIngresado, mesIngresado);
+    //document.getElementById("idTratamiento").value = "";
 
 }
+
+
+
 
 // Cuando hago clic en Descubre
 $('#botonPrincipal').click(function(e) {
