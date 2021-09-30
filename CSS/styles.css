@@ -321,6 +321,30 @@ h5 {
       align-content: center;
       margin: 10px 0; }
 
+#cita4 {
+  display: inline-block; }
+
+#cita5 {
+  display: inline-block;
+  background: black; }
+
+#cita {
+  display: inline-block; }
+
+#listacitas table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%; }
+
+#listacitas td,
+#listacitas th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px; }
+
+#listacitas tr:nth-child(even) {
+  background-color: #dddddd; }
+
 .gradiente {
   text-align: center;
   background-color: #7EB9CC;

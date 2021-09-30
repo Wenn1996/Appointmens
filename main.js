@@ -89,15 +89,40 @@ citas.push(new Cita(10, "30/09/2021", "13:30", 2, 1));
 citas.push(new Cita(11, "30/09/2021", "14:30", 3, 2));
 console.log(citas);
 
+
+const doctores = [];
+//Agregamos objetos al array
+doctores.push(new Doctor(0, "Daniela Lopez", "Ortodoncia"));
+doctores.push(new Doctor(1, "Lucia Espinoza", "Endodoncia"));
+doctores.push(new Doctor(2, "Rodrigo Sanchez", "Extracción"));
+doctores.push(new Doctor(3, "Samantha Torres", "Endodoncia"));
+console.log(doctores);
+mostrarDoctores();
+
+
+//Formulario de registro de paciente
+let miFormulario = document.getElementById("miFormulario");
+miFormulario.addEventListener("submit", agregarPaciente);
+let contenedorTratamientos = document.getElementById("tratamientos");
+let contenerdorFormCita = document.getElementById("citasform");
+let contenedorResumen = document.getElementById("resumen");
+let contenedorlistacitas = document.getElementById("appointment");
+let contenedorMiscitas = document.getElementById("listacitas");
+
+let pacientes = [];
+
+let tratamientos = [];
+
+
 //Modal de registro
 
-var usuarios = [];
+let usuarios = [];
 let cerrar = document.querySelectorAll(".close")[0];
 let abrir = document.querySelectorAll(".cta")[0];
 let modal = document.querySelectorAll(".modal")[0];
 let modalC = document.querySelectorAll(".modal-container")[0];
 let cerrar2 = document.getElementById("btnRegistrate");
-var miRegistro = document.getElementById("Register");
+let miRegistro = document.getElementById("Register");
 miRegistro.addEventListener("submit", agregarUsuario);
 
 abrir.addEventListener("click", function(e) {
@@ -134,7 +159,7 @@ function agregarUsuario(e) {
     e.preventDefault();
     validarRegistro();
     if (datosValidos) {
-        var form = e.target;
+        let form = e.target;
         correoIngresado = miRegistro.children[0].value;
         contrasenaIngresado = miFormulario.children[1].value;
         usuarios.push(new Usuario(correoIngresado, contrasenaIngresado));
@@ -158,14 +183,7 @@ function agregarUsuario(e) {
 }
 
 
-const doctores = [];
-//Agregamos objetos al array
-doctores.push(new Doctor(0, "Daniela Lopez", "Ortodoncia"));
-doctores.push(new Doctor(1, "Lucia Espinoza", "Endodoncia"));
-doctores.push(new Doctor(2, "Rodrigo Sanchez", "Extracción"));
-doctores.push(new Doctor(3, "Samantha Torres", "Endodoncia"));
-console.log(doctores);
-mostrarDoctores();
+
 
 
 function mostrarDoctores() {
@@ -186,17 +204,7 @@ function mostrarDoctores() {
 
 
 
-//Formulario de registro de paciente
-var miFormulario = document.getElementById("miFormulario");
-miFormulario.addEventListener("submit", agregarPaciente);
-var contenedorTratamientos = document.getElementById("tratamientos");
-var contenerdorFormCita = document.getElementById("citasform");
-var contenedorResumen = document.getElementById("resumen");
-let contenedorlistacitas = document.getElementById("appointment");
 
-let pacientes = [];
-
-let tratamientos = [];
 
 //Mostrar lista de tratamientos
 function mostrarTratamientos() {
@@ -240,7 +248,7 @@ function mostrarCitas(filtro) {
         tablacitas += `<td class="table-checkbox"><input type="radio" value="${cita.id}" class="elegirC" name="rbtn"></td><td>${cita.fecha}</td> <td> ${cita.hora}</td></tbody> `;
     }
 
-    contenedorlistacitas.innerHTML = `${tablacitas} </tbody> </table> <input type="submit" class=" boton" value="Reservar cita" id="cita"> </form> `;
+    contenedorlistacitas.innerHTML = `${tablacitas} </tbody> </table> <div> <input type="submit" class=" boton" value="Reservar cita" id="cita"> </div> </form> `;
     var formCita = document.getElementById("form2");
     formCita.addEventListener("submit", registrarCita2);
 }
@@ -282,7 +290,7 @@ function agregarPaciente(e) {
     e.preventDefault();
     validarForm1();
     if (datosValidos) {
-        var form = e.target;
+        let form = e.target;
         nombreIngresado = miFormulario.children[1].value;
         edadIngresado = miFormulario.children[2].value;
         dniIngresado = miFormulario.children[3].value;
@@ -293,16 +301,13 @@ function agregarPaciente(e) {
         miFormulario.children[2].value = "";
         miFormulario.children[3].value = "";
         $("#miFormulario").hide();
-        //el alto del div tratamientos
-        //contenedorTratamientos.style.height = "90vh";
-        //contenedorTratamientos.style.marginTop = "200px";
         mostrarTratamientos();
     } else {
         alert("No se puedo agregar paciente");
     }
 }
 
-console.log(pacientes);
+
 
 function mostrarResumen() {
     $("#resumen").show();
@@ -310,16 +315,17 @@ function mostrarResumen() {
     const cita1 = citas.find(elemento => elemento.id == reservaActual.idCita)
     const encontrado = tratamientos.find(elemento => elemento.id == cita1.idTratamiento);
     const doctor = doctores.find(elemento => elemento.id == cita1.idDoctor)
-    contenedorResumen.innerHTML = `<h3> Detalles de Cita</h3>
-    <p><strong> Tratamiento : </strong>  ${encontrado.nombreTratamiento} </p> <br> 
-    <p><strong> Fecha : </strong> ${cita1.fecha}</p> <br>
-    <p><strong> Hora : </strong> ${cita1.hora}</p> <br>
-    <p><strong> Doctor : </strong> ${doctor.nombre}</p> <br>
+    contenedorResumen.innerHTML = `<h3> Detalles de Cita</h3><br>
+    <p><strong> Tratamiento : </strong>  ${encontrado.nombreTratamiento} </p>  
+    <p><strong> Fecha : </strong> ${cita1.fecha}</p>
+    <p><strong> Hora : </strong> ${cita1.hora}</p>
+    <p><strong> Doctor : </strong> ${doctor.nombre}</p>
     <p><strong> Costo : </strong> S/.${encontrado.calcularCosto()}</p> <br>`;
 
     $("#resumen").append(`<h3 class="oferta_titulo">Está Oferta es para tí</h3>
     <p class="oferta_parrafo">Saca tu segunda consulta con 50% de descuento</p>
-    <input type="submit" class="formulario__boton boton" value="Reservar cita" id="cita4">`);
+    <div><input type="submit" class=" boton" value="Nueva cita" id="cita4"></div>
+    <div><input type="submit" class=" boton" value="Mis citas" id="cita5"></div> `);
 
 
     //transiciones 
@@ -332,24 +338,70 @@ function mostrarResumen() {
         //Cuando termina de ocultarse el elemento lo mostramos nuevamente
         $(".oferta_parrafo").fadeOut(5000);
     });
-    /*$("#cita4").fadeIn("slow", function() {
-        //Cuando termina de ocultarse el elemento lo mostramos nuevamente
-        $("#cita4").fadeOut(5000);
-    });*/
+
 
     $('#cita4').click(function(e) {
         e.preventDefault();
         $("#miFormulario").show();
         $("#resumen").hide();
+        $("#listacitas").hide();
     });
 
+    //mis citas
+    $('#cita5').click(function(e) {
+        e.preventDefault();
+        mostrarMisCitas();
+        $("#listacitas").show();
+        //Animamos sus propiedades CSS con animate
+        $('html, body').animate({
+            scrollTop: $("#listacitas").offset().top
+        }, 2000);
+    });
 
+    console.log(reservas);
+
+}
+
+function mostrarMisCitas() {
+    contenedorMiscitas.style.margin = "100px 50px 0px 50px";
+    contenedorMiscitas.style.height = "80vh";
+    let tabla2 = `<form action="#" method="GET" id="form6"><p>Mis citas reservadas </p> <table>
+    <tr>
+        <th>Tratamiento</th>
+        <th>Doctor</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Paciente</th>
+    </tr>`;
+    for (let reserva of reservas) {
+        let cita1 = citas.find(elemento => elemento.id == reserva.idCita);
+        let encontrado = tratamientos.find(elemento => elemento.id == cita1.idTratamiento);
+        let doctor = doctores.find(elemento => elemento.id == cita1.idDoctor)
+        let paciente = pacientes.find(elemento => elemento.dni == reserva.pacienteDNI)
+        tabla2 += `<tr>
+        <th>${encontrado.nombreTratamiento}</th>
+        <td>${doctor.nombre}</td>
+        <td>${cita1.fecha}</td>
+        <td>${cita1.hora}</td>
+        <td>${paciente.nombre}</td>
+        
+    </tr> `;
+    }
+    contenedorMiscitas.innerHTML = `${tabla2} </table>  <input type="submit" class=" boton" value="Nueva cita" id="cita8"> </form> `;
+
+
+    $('#cita8').click(function(e) {
+        e.preventDefault();
+        $("#listacitas").hide();
+        $("#miFormulario").show();
+        $("#resumen").hide();
+    });
 }
 
 
 function registrarCita2(e) {
     e.preventDefault();
-    var form = e.target;
+    let form = e.target;
     for (let checkbox of $(".elegirC")) {
         if (checkbox.checked) {
             console.log("Se ha checkeado el " + checkbox.value);
@@ -363,8 +415,6 @@ function registrarCita2(e) {
     mostrarResumen();
 
 }
-
-
 
 
 // Cuando hago clic en Descubre
