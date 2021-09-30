@@ -100,7 +100,7 @@ console.log(doctores);
 mostrarDoctores();
 
 
-//Formulario de registro de paciente
+//Formulario para sacar cita
 let miFormulario = document.getElementById("miFormulario");
 miFormulario.addEventListener("submit", agregarPaciente);
 let contenedorTratamientos = document.getElementById("tratamientos");
@@ -125,6 +125,7 @@ let cerrar2 = document.getElementById("btnRegistrate");
 let miRegistro = document.getElementById("Register");
 miRegistro.addEventListener("submit", agregarUsuario);
 
+// Modal de registro
 abrir.addEventListener("click", function(e) {
     e.preventDefault();
     modalC.style.opacity = "1";
@@ -308,7 +309,7 @@ function agregarPaciente(e) {
 }
 
 
-
+//Función para el detalle de cita reservada
 function mostrarResumen() {
     $("#resumen").show();
     console.log(tratamientos);
